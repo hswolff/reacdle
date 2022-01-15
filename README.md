@@ -14,3 +14,6 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
     - [found a 5 letter word list to use](https://www.thefreedictionary.com/5-letter-words.htm)
         - hehe `copy(Array.from(document.querySelectorAll('.TCont li a')).map(a => a.innerText))`
 - meh, i want to do UI first, lets switch to making the basic word guess building block
+- start making WordRow
+     - realize I need to finally learn [css grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout)
+     - got initial basic design and then realized i needed to go back to making the core algorithm work
