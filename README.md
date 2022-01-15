@@ -17,3 +17,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 - start making WordRow
      - realize I need to finally learn [css grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Relationship_of_Grid_Layout)
      - got initial basic design and then realized i needed to go back to making the core algorithm work
+- ok get `computeGuess()` working
