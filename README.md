@@ -6,3 +6,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 # steps taken to create
 
 - make the readme
+- `yarn create vite reacdle --template react-ts .`
