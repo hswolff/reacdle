@@ -44,23 +44,10 @@ export function computeGuess(
     if (curResult !== LetterState.Present) {
       return;
     }
-    console.log(answerLetterCount);
 
     const guessLetter = guessAsArray[resultIndex];
-    console.log({ guessLetter });
-
-    //      50|     expect(computeGuess('alloy', 'smelt')).toEqual([
 
     answer.forEach((currentAnswerLetter, answerIndex) => {
-      console.log({
-        resultIndex,
-        guessLetter,
-        currentAnswerLetter,
-        resultAnswerIndex: result[answerIndex],
-        answerIndex,
-        answerLetterCount: answerLetterCount[guessLetter],
-      });
-
       if (currentAnswerLetter !== guessLetter) {
         return;
       }
@@ -75,7 +62,6 @@ export function computeGuess(
     });
 
     answerLetterCount[guessLetter]--;
-    console.log('end loop');
   });
 
   return result;
