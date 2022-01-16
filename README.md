@@ -19,3 +19,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
      - got initial basic design and then realized i needed to go back to making the core algorithm work
 - ok get `computeGuess()` working
 - realizied i forgot some edge cases of `computerGuess` and had to fix them
+- update props of WordRow and clean up styles somewhat
