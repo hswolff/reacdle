@@ -20,3 +20,6 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 - ok get `computeGuess()` working
 - realizied i forgot some edge cases of `computerGuess` and had to fix them
 - update props of WordRow and clean up styles somewhat
+- let's get our store working! adding zustand and getting the UI to work accordingly
+    - at this point i wanted to get letter input working...so i just kept coding and coding
+    - got the raw behavior working...but let's stop for now

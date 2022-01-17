@@ -1,13 +1,15 @@
+import { answerSelector, useStore } from './store';
 import { computeGuess, LetterState } from './word-utils';
 
 interface WordRowProps {
   word: string;
 }
 export default function WordRow({ word = '' }: WordRowProps) {
-  const lettersRemaining = Math.abs(word.length - 5);
+  const answer = useStore(answerSelector);
+  const lettersRemaining = 5 - word.length;
   const letters = word.split('').concat(Array(lettersRemaining).fill(''));
 
-  const guessStates = computeGuess(letters.join(''));
+  const guessStates = computeGuess(letters.join(''), answer);
 
   return (
     <div className="grid grid-cols-5 gap-4">
@@ -30,7 +32,7 @@ function CharacterBox({ value, state }: CharacterBoxProps) {
 
   return (
     <span
-      className={`border-2  p-2 uppercase text-center font-extrabold text-4xl ${stateStyles} `}
+      className={`border-2 p-2 uppercase text-center font-extrabold text-4xl ${stateStyles} `}
     >
       {value}
     </span>

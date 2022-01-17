@@ -8,7 +8,7 @@ export enum LetterState {
 
 export function computeGuess(
   guess: string,
-  answerString: string = word
+  answerString: string
 ): LetterState[] {
   const result: LetterState[] = [];
 
@@ -67,8 +67,6 @@ export function computeGuess(
   return result;
 }
 
-function getRandomWord(): string {
+export function getRandomWord(): string {
   return wordBank[Math.floor(Math.random() * wordBank.length)];
 }
-
-export const word = getRandomWord();
