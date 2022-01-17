@@ -29,3 +29,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 - more tests! getting more game functionality together
 - spend way too long to get empty state of the game to have correct default height
 - get things deployable for fun and profit
+- Refactor store to save computed guesses into store so we can calculate game state more easily

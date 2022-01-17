@@ -22,6 +22,9 @@ export function computeGuess(
 
   const answerLetterCount: Record<string, number> = {};
 
+  // alternative approaches to this logic
+  // https://github.com/rauchg/wordledge/blob/main/pages/_middleware.ts#L46-L69
+
   guessAsArray.forEach((letter, index) => {
     const currentAnswerLetter = answer[index];
 

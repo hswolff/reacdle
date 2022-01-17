@@ -6,11 +6,12 @@ import { render, screen, userEvent, within } from './test/test-utils';
 describe('App', () => {
   test('the title is visible', () => {
     render(<App />);
+    // @ts-expect-error
     expect(screen.getByText(/Reacdle/i)).toBeInTheDocument();
   });
 
   test('shows empty state', () => {
-    useStore.setState({ guesses: [] });
+    useStore.getState().newGame([]);
     render(<App />);
     expect(screen.queryByText('Game Over')).toBeNull();
     expect(document.querySelectorAll('main div')).toHaveLength(6);
@@ -18,20 +19,22 @@ describe('App', () => {
   });
 
   test('shows one row of guesses', () => {
-    useStore.setState({ guesses: ['hello'] });
+    useStore.getState().newGame(['hello']);
     render(<App />);
     expect(document.querySelector('main')?.textContent).toEqual('hello');
   });
 
   test('shows end game state', () => {
-    useStore.setState({ guesses: Array(6).fill('hello') });
+    useStore.getState().newGame(Array(6).fill('hello'));
     render(<App />);
+    // @ts-expect-error
     expect(screen.getByText('Game Over')).toBeInTheDocument();
   });
 
   test('can start new game', () => {
-    useStore.setState({ guesses: Array(6).fill('hello') });
+    useStore.getState().newGame(Array(6).fill('hello'));
     render(<App />);
+    // @ts-expect-error
     expect(screen.getByText('Game Over')).toBeInTheDocument();
 
     userEvent.click(

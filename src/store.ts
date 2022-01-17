@@ -1,27 +1,44 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
-import { getRandomWord } from './word-utils';
+import { computeGuess, getRandomWord, LetterState } from './word-utils';
+
+interface GuessRow {
+  guess: string;
+  result?: LetterState[];
+}
 
 interface StoreState {
   answer: string;
-  guesses: string[];
+  rows: GuessRow[];
   addGuess(guess: string): void;
-  newGame(): void;
+  newGame(initialGuess?: string[]): void;
 }
 
 export const useStore = create<StoreState>(
   persist(
-    (set, get) => ({
-      answer: getRandomWord(),
-      guesses: ['hello', 'solar', 'penny'],
-      addGuess: (guess) => set({ guesses: get().guesses.concat(guess) }),
-      newGame() {
+    (set, get) => {
+      const addGuess = (guess: string) =>
         set({
-          answer: getRandomWord(),
-          guesses: [],
+          rows: get().rows.concat({
+            guess,
+            result: computeGuess(guess, get().answer),
+          }),
         });
-      },
-    }),
+
+      return {
+        answer: getRandomWord(),
+        rows: [],
+        addGuess,
+        newGame(initialRows = []) {
+          set({
+            answer: getRandomWord(),
+            rows: [],
+          });
+
+          initialRows.forEach(addGuess);
+        },
+      };
+    },
     {
       name: 'reacdle',
       getStorage: () => localStorage,
