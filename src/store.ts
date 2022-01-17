@@ -2,6 +2,8 @@ import create from 'zustand';
 import { persist } from 'zustand/middleware';
 import { computeGuess, getRandomWord, LetterState } from './word-utils';
 
+export const NUMBER_OF_GUESSES = 6;
+
 interface GuessRow {
   guess: string;
   result?: LetterState[];
@@ -10,6 +12,7 @@ interface GuessRow {
 interface StoreState {
   answer: string;
   rows: GuessRow[];
+  gameState: 'playing' | 'won' | 'lost';
   addGuess(guess: string): void;
   newGame(initialGuess?: string[]): void;
 }
@@ -17,20 +20,34 @@ interface StoreState {
 export const useStore = create<StoreState>(
   persist(
     (set, get) => {
-      const addGuess = (guess: string) =>
-        set({
-          rows: get().rows.concat({
-            guess,
-            result: computeGuess(guess, get().answer),
-          }),
+      const addGuess = (guess: string) => {
+        const result = computeGuess(guess, get().answer);
+
+        const rows = get().rows.concat({
+          guess,
+          result,
         });
+
+        const didWin = result.every((i) => i === LetterState.Match);
+
+        set({
+          rows,
+          gameState: didWin
+            ? 'won'
+            : rows.length === NUMBER_OF_GUESSES
+            ? 'lost'
+            : 'playing',
+        });
+      };
 
       return {
         answer: getRandomWord(),
         rows: [],
+        gameState: 'playing',
         addGuess,
         newGame(initialRows = []) {
           set({
+            gameState: 'playing',
             answer: getRandomWord(),
             rows: [],
           });
