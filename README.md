@@ -28,3 +28,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
     - just went down a huge rabit hole getting RTL working with vitest only to find that jest-dom TypeScript support is broken
 - more tests! getting more game functionality together
 - spend way too long to get empty state of the game to have correct default height
+- get things deployable for fun and profit

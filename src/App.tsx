@@ -44,17 +44,16 @@ function App() {
   );
 
   return (
-    <div className="mx-1auto w-96 relative h-screen">
+    <div className="mx-auto w-96 relative h-screen">
       <header className="border-b border-gray-400 py-4 mb-4">
         <h1 className="text-3xl font-bold mb-8 text-center uppercase">
           Reacdle
         </h1>
 
         <div id="debug-area">
-          <p className="my-4">Test word</p>
-          <WordRow word={state.answer} />
           <input
             type="text"
+            placeholder="Enter Guess"
             className="w-1/2 mx-auto mt-4 mr-8 border border-gray-400 p-2"
             value={guess}
             disabled={isGameOver}
@@ -76,6 +75,8 @@ function App() {
           className="absolute bg-white border border-gray-500 rounded text-center w-3/4 h-1/2 p-6 left-0 right-0 mx-auto top-1/4"
         >
           <p>Game Over</p>
+          <WordRow word={state.answer} />
+
           {newGameButton}
         </div>
       )}
