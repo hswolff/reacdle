@@ -23,3 +23,6 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 - let's get our store working! adding zustand and getting the UI to work accordingly
     - at this point i wanted to get letter input working...so i just kept coding and coding
     - got the raw behavior working...but let's stop for now
+- want to add validation to game (only allow 6 guesses) but think it may be easier to do this with UI tests
+    - so go to [vitest examples](https://vitest.dev/guide/#examples) which leads to [their react-testing-library example](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib) and then cross test that it's [the same as react testing libraries setup guide](https://testing-library.com/docs/react-testing-library/setup)
+    - just went down a huge rabit hole getting RTL working with vitest only to find that jest-dom TypeScript support is broken
