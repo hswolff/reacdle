@@ -27,11 +27,25 @@ function App() {
 
   const guessesRemaining = NUMBER_OF_GUESSES - rows.length;
 
+  const isGameOver = state.guesses.length === NUMBER_OF_GUESSES;
+
   rows = rows.concat(Array(guessesRemaining).fill(''));
 
+  const newGameButton = (
+    <button
+      className="border border-green-500 rounded bg-green-500 p-2 mt-4 text-gray-800 shadow"
+      onClick={() => {
+        state.newGame();
+        setGuess('');
+      }}
+    >
+      New Game
+    </button>
+  );
+
   return (
-    <div className="mx-1auto w-96">
-      <header className="border-b border-gray-400 my-4 pb-4">
+    <div className="mx-1auto w-96 relative h-screen">
+      <header className="border-b border-gray-400 py-4 mb-4">
         <h1 className="text-3xl font-bold mb-8 text-center uppercase">
           Reacdle
         </h1>
@@ -41,10 +55,12 @@ function App() {
           <WordRow word={state.answer} />
           <input
             type="text"
-            className="w-1/2 mx-auto mt-4 border border-gray-400 p-2"
+            className="w-1/2 mx-auto mt-4 mr-8 border border-gray-400 p-2"
             value={guess}
+            disabled={isGameOver}
             onChange={onChange}
           />
+          {newGameButton}
         </div>
       </header>
 
@@ -53,6 +69,16 @@ function App() {
           <WordRow key={index} word={word} />
         ))}
       </main>
+
+      {isGameOver && (
+        <div
+          role="modal"
+          className="absolute bg-white border border-gray-500 rounded text-center w-3/4 h-1/2 p-6 left-0 right-0 mx-auto top-1/4"
+        >
+          <p>Game Over</p>
+          {newGameButton}
+        </div>
+      )}
     </div>
   );
 }

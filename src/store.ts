@@ -6,6 +6,7 @@ interface StoreState {
   answer: string;
   guesses: string[];
   addGuess(guess: string): void;
+  newGame(): void;
 }
 
 export const useStore = create<StoreState>(
@@ -14,6 +15,12 @@ export const useStore = create<StoreState>(
       answer: getRandomWord(),
       guesses: ['hello', 'solar', 'penny'],
       addGuess: (guess) => set({ guesses: get().guesses.concat(guess) }),
+      newGame() {
+        set({
+          answer: getRandomWord(),
+          guesses: [],
+        });
+      },
     }),
     {
       name: 'reacdle',
