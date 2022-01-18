@@ -30,3 +30,8 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
 - spend way too long to get empty state of the game to have correct default height
 - get things deployable for fun and profit
 - Refactor store to save computed guesses into store so we can calculate game state more easily
+- this took far too much time than it should have
+    - i wanted to move from input box to global keyDown listener
+    - i ran into the issue where a function handler closes over a value so the `guess` `useState` value was stale and never changed
+    - it took me far too long to think about how to deconstruct the problem and make it simpler
+    - happy with the end result but man...i wish it didn't take so long
