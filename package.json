@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "tsc": "tsc",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
