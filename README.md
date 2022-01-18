@@ -35,3 +35,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
     - i ran into the issue where a function handler closes over a value so the `guess` `useState` value was stale and never changed
     - it took me far too long to think about how to deconstruct the problem and make it simpler
     - happy with the end result but man...i wish it didn't take so long
+- some minor refactoring to get isValidWord working. had to move state around
