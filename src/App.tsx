@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useStore, NUMBER_OF_GUESSES } from './store';
+import { useStore, NUMBER_OF_GUESSES, WORD_LENGTH } from './store';
 import WordRow from './WordRow';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newGuess = e.target.value;
 
-    if (newGuess.length === 5) {
+    if (newGuess.length === WORD_LENGTH) {
       state.addGuess(newGuess);
       newGuess = '';
     }
@@ -29,18 +29,6 @@ function App() {
 
   rows = rows.concat(Array(guessesRemaining).fill(''));
 
-  const newGameButton = (
-    <button
-      className="border border-green-500 rounded bg-green-500 p-2 mt-4 text-gray-800 shadow"
-      onClick={() => {
-        state.newGame();
-        setGuess('');
-      }}
-    >
-      New Game
-    </button>
-  );
-
   return (
     <div className="mx-auto w-96 relative h-screen">
       <header className="border-b border-gray-400 py-4 mb-4">
@@ -57,7 +45,6 @@ function App() {
             disabled={isGameOver}
             onChange={onChange}
           />
-          {newGameButton}
         </div>
       </header>
 
@@ -75,7 +62,15 @@ function App() {
           <p>Game Over</p>
           <WordRow word={state.answer} />
 
-          {newGameButton}
+          <button
+            className="border border-green-500 rounded bg-green-500 p-2 mt-4 text-gray-800 shadow"
+            onClick={() => {
+              state.newGame();
+              setGuess('');
+            }}
+          >
+            New Game
+          </button>
         </div>
       )}
     </div>

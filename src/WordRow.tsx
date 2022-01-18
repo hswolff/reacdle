@@ -1,4 +1,4 @@
-import { answerSelector, useStore } from './store';
+import { answerSelector, useStore, WORD_LENGTH } from './store';
 import { LetterState } from './word-utils';
 
 interface WordRowProps {
@@ -7,7 +7,7 @@ interface WordRowProps {
 }
 export default function WordRow({ word = '', result = [] }: WordRowProps) {
   const answer = useStore(answerSelector);
-  const lettersRemaining = 5 - word.length;
+  const lettersRemaining = WORD_LENGTH - word.length;
   const letters = word.split('').concat(Array(lettersRemaining).fill(''));
 
   return (
