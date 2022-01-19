@@ -37,3 +37,8 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
     - happy with the end result but man...i wish it didn't take so long
 - some minor refactoring to get isValidWord working. had to move state around
 - add the keyboard for mobile use!
+
+
+# other implementations
+
+- https://octokatherine.github.io/word-master/
