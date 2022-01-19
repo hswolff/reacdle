@@ -14,6 +14,7 @@ interface StoreState {
   answer: string;
   rows: GuessRow[];
   gameState: 'playing' | 'won' | 'lost';
+  keyboardLetterState: { [letter: string]: LetterState };
   addGuess(guess: string): void;
   newGame(initialGuess?: string[]): void;
 }
@@ -29,10 +30,29 @@ export const useStore = create<StoreState>(
           result,
         });
 
-        const didWin = result.every((i) => i === LetterState.Match);
+        const didWin = result.every((r) => r === LetterState.Match);
+
+        const keyboardLetterState = get().keyboardLetterState;
+        result.forEach((r, index) => {
+          const resultGuessLetter = guess[index];
+
+          const currentLetterState = keyboardLetterState[resultGuessLetter];
+          switch (currentLetterState) {
+            case LetterState.Match:
+              break;
+            case LetterState.Present:
+              if (r === LetterState.Miss) {
+                break;
+              }
+            default:
+              keyboardLetterState[resultGuessLetter] = r;
+              break;
+          }
+        });
 
         set({
           rows,
+          keyboardLetterState,
           gameState: didWin
             ? 'won'
             : rows.length === NUMBER_OF_GUESSES
@@ -45,12 +65,14 @@ export const useStore = create<StoreState>(
         answer: getRandomWord(),
         rows: [],
         gameState: 'playing',
+        keyboardLetterState: {},
         addGuess,
         newGame(initialRows = []) {
           set({
             gameState: 'playing',
             answer: getRandomWord(),
             rows: [],
+            keyboardLetterState: {},
           });
 
           initialRows.forEach(addGuess);

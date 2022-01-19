@@ -36,3 +36,4 @@ a [wordle](https://www.powerlanguage.co.uk/wordle/) clone written in React, Tail
     - it took me far too long to think about how to deconstruct the problem and make it simpler
     - happy with the end result but man...i wish it didn't take so long
 - some minor refactoring to get isValidWord working. had to move state around
+- add the keyboard for mobile use!
