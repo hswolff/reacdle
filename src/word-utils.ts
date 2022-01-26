@@ -71,9 +71,9 @@ export function computeGuess(
 }
 
 export function getRandomWord(): string {
-  return wordBank[Math.floor(Math.random() * wordBank.length)];
+  return wordBank.valid[Math.floor(Math.random() * wordBank.valid.length)];
 }
 
 export function isValidWord(word: string): boolean {
-  return wordBank.includes(word);
+  return wordBank.valid.concat(wordBank.invalid).includes(word);
 }
